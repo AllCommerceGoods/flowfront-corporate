@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Trust & Authority, navy + blue on near-white */
+    --background: 210 40% 98%; /* #F8FAFC */
+    --foreground: 222 47% 11%; /* #0F172A navy */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 201 96% 32%; /* #0369A1 CTA blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 25% 27%; /* #334155 slate */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 30% 95%;
+    --muted-foreground: 215 20% 42%; /* slate-600, AA on white */
+
+    --accent: 201 90% 94%;
+    --accent-foreground: 201 96% 28%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 62% 30%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 214 25% 88%;
+    --input: 214 25% 88%;
+    --ring: 201 96% 32%;
+
+    --radius: 0.75rem;
+
+    --nav-bg: 0 0% 100%;
+    --nav-foreground: 222 47% 15%;
+    --footer-bg: 222 47% 8%; /* deep navy */
+    --footer-foreground: 214 20% 72%;
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 20% 92%;
+
+    --card: 222 40% 11%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 222 40% 11%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 201 90% 54%;
+    --primary-foreground: 222 47% 9%;
+
+    --secondary: 215 20% 22%;
+    --secondary-foreground: 210 20% 92%;
+
+    --muted: 222 25% 16%;
+    --muted-foreground: 215 18% 62%;
+
+    --accent: 222 25% 18%;
+    --accent-foreground: 201 90% 70%;
+
+    --destructive: 0 62% 44%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 52% 46%;
+    --success-foreground: 222 47% 9%;
+
+    --border: 222 22% 20%;
+    --input: 222 22% 20%;
+    --ring: 201 90% 54%;
+
+    --nav-bg: 222 40% 10%;
+    --nav-foreground: 210 20% 88%;
+    --footer-bg: 222 47% 5%;
+    --footer-foreground: 214 18% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Lexend", system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .font-mono-tabular {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
