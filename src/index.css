@@ -111,6 +111,25 @@
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
   }
+
+  /* Very slow, continuous horizontal drift for the hero image strip.
+     The strip is duplicated in markup, so a -50% shift loops seamlessly. */
+  .animate-hero-drift {
+    animation: hero-drift 90s linear infinite;
+    will-change: transform;
+  }
+  .animate-hero-drift:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -119,5 +138,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Hold the hero strip still rather than snapping to its end frame. */
+  .animate-hero-drift {
+    animation: none !important;
+    transform: none !important;
   }
 }

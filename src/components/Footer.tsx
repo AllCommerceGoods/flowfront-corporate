@@ -20,7 +20,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-8 sm:grid-cols-3">
             <div className="space-y-3">
               <h3 className="font-display text-xs font-semibold uppercase tracking-widest text-footer-foreground/60">
                 Company
@@ -59,12 +59,30 @@ export function Footer() {
                 </li>
               </ul>
             </div>
+
+            <div className="space-y-3">
+              <h3 className="font-display text-xs font-semibold uppercase tracking-widest text-footer-foreground/60">
+                Locations
+              </h3>
+              <ul className="space-y-3 text-sm">
+                <li className="text-footer-foreground/80">
+                  4711 N Lamon Ave, STE 12
+                  <br />
+                  Chicago, IL 60630
+                </li>
+                <li className="text-footer-foreground/80">
+                  1982 NE 25th Ave, STE 4
+                  <br />
+                  Hillsboro, OR 97124
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-footer-foreground/60 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} FlowFront Global LLC. All rights reserved.</p>
-          <p>A growth partner that takes the inventory risk, not a fee.</p>
+          <p>We buy the inventory and grow the channel. Only paid when it sells.</p>
         </div>
       </div>
     </footer>

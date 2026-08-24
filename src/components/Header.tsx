@@ -64,7 +64,7 @@ export function Header() {
             size="sm"
             className="cursor-pointer rounded-full font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
           >
-            Get a free channel audit
+            Get your free channel audit
           </Button>
         </a>
       </div>

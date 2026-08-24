@@ -1,22 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type BeforeAfterSliderProps = {
-  /** Optional image URLs. When omitted, a labeled placeholder panel is shown. */
-  beforeSrc?: string;
-  afterSrc?: string;
+  /** Before/after image URLs. */
+  beforeSrc: string;
+  afterSrc: string;
   beforeAlt?: string;
   afterAlt?: string;
   beforeLabel?: string;
   afterLabel?: string;
-  /** Aspect ratio, e.g. "4 / 3" or "16 / 10". */
+  /** Aspect ratio, e.g. "4 / 5". */
   ratio?: string;
   className?: string;
 };
 
 /**
  * Draggable comparison slider. Drag the handle, or focus it and use the
- * left/right arrow keys. Falls back to labeled placeholder panels until the
- * real before/after screenshots are dropped in.
+ * left/right arrow keys.
  */
 export function BeforeAfterSlider({
   beforeSrc,
@@ -25,7 +24,7 @@ export function BeforeAfterSlider({
   afterAlt = "Listing after the rebuild",
   beforeLabel = "Before",
   afterLabel = "After",
-  ratio = "4 / 3",
+  ratio = "4 / 5",
   className = "",
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -74,37 +73,18 @@ export function BeforeAfterSlider({
     label,
     variant,
   }: {
-    src?: string;
+    src: string;
     alt: string;
     label: string;
     variant: "before" | "after";
   }) => (
     <div className="absolute inset-0 h-full w-full select-none">
-      {src ? (
-        <img
-          src={src}
-          alt={alt}
-          draggable={false}
-          className="h-full w-full object-cover"
-        />
-      ) : (
-        <div
-          className={`flex h-full w-full flex-col items-center justify-center gap-2 ${
-            variant === "before"
-              ? "bg-secondary/90 text-secondary-foreground"
-              : "bg-primary/10 text-foreground"
-          }`}
-        >
-          <span className="text-xs font-semibold uppercase tracking-widest opacity-70">
-            {variant === "before" ? "Placeholder image" : "Placeholder image"}
-          </span>
-          <span className="px-6 text-center font-display text-sm font-medium opacity-80">
-            {variant === "before"
-              ? "Drop the original Amazon listing here"
-              : "Drop the rebuilt Amazon listing here"}
-          </span>
-        </div>
-      )}
+      <img
+        src={src}
+        alt={alt}
+        draggable={false}
+        className="h-full w-full object-contain"
+      />
       <span
         className={`pointer-events-none absolute top-3 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${
           variant === "before"
@@ -120,7 +100,7 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full overflow-hidden rounded-2xl border border-border bg-card shadow-xl ${className}`}
+      className={`relative w-full overflow-hidden rounded-2xl border border-border bg-muted shadow-xl ${className}`}
       style={{ aspectRatio: ratio }}
     >
       {/* After (full, underneath) */}
