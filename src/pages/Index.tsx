@@ -4,6 +4,7 @@ import { ArrowRight, Check, X } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { AuditModalProvider, useAuditModal } from "@/components/AuditModal";
 import {
   Accordion,
   AccordionContent,
@@ -109,6 +110,7 @@ const heroStrip = [
 ];
 
 function Hero() {
+  const { open } = useAuditModal();
   return (
     <section
       id="top"
@@ -129,15 +131,14 @@ function Hero() {
           at wholesale, rebuild your listings, and grow the channel.
         </p>
         <div className="mt-6">
-          <a href="#audit">
-            <Button
-              size="lg"
-              className="cursor-pointer rounded-full px-8 text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Get your free channel audit
-              <ArrowRight className="ml-1.5 h-4 w-4" />
-            </Button>
-          </a>
+          <Button
+            size="lg"
+            onClick={open}
+            className="cursor-pointer rounded-full px-8 text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
+          >
+            Get your free channel audit
+            <ArrowRight className="ml-1.5 h-4 w-4" />
+          </Button>
         </div>
       </motion.div>
 
@@ -257,11 +258,11 @@ function OneVsSeven() {
         <p className="font-display text-sm font-semibold text-foreground">
           April 2026, one image
         </p>
-        <div className="flex flex-1 items-center justify-center rounded-2xl border border-border bg-muted p-4">
+        <div className="flex flex-1 items-center justify-center">
           <img
             src={listingBefore}
             alt="Horse Amour listing in April 2026, a single product image showing discontinued packaging"
-            className="h-auto max-h-full w-auto max-w-[300px] rounded-lg"
+            className="h-auto max-h-full w-auto max-w-[300px] rounded-2xl shadow-xl"
             loading="lazy"
           />
         </div>
@@ -456,33 +457,33 @@ const proofRows = [
 function Proof() {
   return (
     <Section id="proof" tone="white">
-      <motion.div {...fadeUp}>
+      <motion.div {...fadeUp} className="relative">
         <h2 className="font-display text-3xl font-bold leading-[1.15] tracking-tight text-foreground md:text-4xl">
           Horse Amour.
         </h2>
-        <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
-          <div className="max-w-2xl space-y-5 text-lg leading-relaxed text-muted-foreground">
-            <p>
-              Sue came to us after someone promised to fix her Amazon setup, charged her, and
-              disappeared. Nothing came of it. She had paid for results she never got.
-            </p>
-            <p>
-              Both variations were outdated and unmerged. One image each, showing packaging the
-              product no longer came in. No advertising, no enhanced content, no description.
-            </p>
-            <p>
-              We bought inventory. Then we set up brand registry, rebuilt both listings, built a
-              full image set, added enhanced content, merged the variations, enrolled in FBA, and
-              corrected the pricing.
-            </p>
-          </div>
-          <img
-            src={horseAmourLogo}
-            alt="Horse Amour logo"
-            className="h-44 w-44 shrink-0 self-start md:h-52 md:w-52 lg:h-60 lg:w-60"
-            width={240}
-            height={240}
-          />
+        {/* On desktop the logo pins to the top-right corner: its top edge to the
+            heading and its right edge to the charts below. It stacks on mobile. */}
+        <img
+          src={horseAmourLogo}
+          alt="Horse Amour logo"
+          width={240}
+          height={240}
+          className="mt-6 h-40 w-40 md:h-48 md:w-48 lg:absolute lg:right-0 lg:top-1 lg:mt-0 lg:h-44 lg:w-44 xl:h-48 xl:w-48"
+        />
+        <div className="mt-6 max-w-2xl space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <p>
+            Sue came to us after someone promised to fix her Amazon setup, charged her, and
+            disappeared. Nothing came of it. She had paid for results she never got.
+          </p>
+          <p>
+            Both variations were outdated and unmerged. One image each, showing packaging the
+            product no longer came in. No advertising, no enhanced content, no description.
+          </p>
+          <p>
+            We bought inventory. Then we set up brand registry, rebuilt both listings, built a
+            full image set, added enhanced content, merged the variations, enrolled in FBA, and
+            corrected the pricing.
+          </p>
         </div>
       </motion.div>
 
@@ -719,6 +720,7 @@ function FAQ() {
 
 /* --- 10. CTA --- */
 function CTA() {
+  const { open } = useAuditModal();
   return (
     <section id="audit" className="bg-foreground">
       <div className="mx-auto max-w-4xl px-6 py-24 text-center md:py-36">
@@ -729,28 +731,15 @@ function CTA() {
           Tell us what's broken. We'll show you what to fix first.
         </motion.h2>
 
-        <motion.div {...fadeUp} className="mx-auto mt-10 max-w-2xl">
-          <a href="mailto:owner@flowfrontglobal.com">
-            <Button
-              size="lg"
-              className="cursor-pointer rounded-full px-8 text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Get your free channel audit
-              <ArrowRight className="ml-1.5 h-4 w-4" />
-            </Button>
-          </a>
-
-          {/* Calendar embed placeholder */}
-          <div
-            className="mt-8 flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-background/25 bg-background/5 p-10 text-center"
-            style={{ minHeight: 180 }}
+        <motion.div {...fadeUp} className="mt-10">
+          <Button
+            size="lg"
+            onClick={open}
+            className="cursor-pointer rounded-full px-8 text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
           >
-            <p className="font-display font-semibold text-background">Calendar embed goes here</p>
-            <p className="max-w-sm text-sm text-background/60">
-              Drop in your scheduling embed (Calendly, Cal.com, or similar) so brands can book
-              the audit directly.
-            </p>
-          </div>
+            Get your free channel audit
+            <ArrowRight className="ml-1.5 h-4 w-4" />
+          </Button>
         </motion.div>
       </div>
     </section>
@@ -759,21 +748,23 @@ function CTA() {
 
 export default function Index() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <ProofBar />
-        <Problem />
-        <WhatWeFix />
-        <HowItWorks />
-        <Proof />
-        <Fit />
-        <Operators />
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <AuditModalProvider>
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">
+          <Hero />
+          <ProofBar />
+          <Problem />
+          <WhatWeFix />
+          <HowItWorks />
+          <Proof />
+          <Fit />
+          <Operators />
+          <FAQ />
+          <CTA />
+        </main>
+        <Footer />
+      </div>
+    </AuditModalProvider>
   );
 }

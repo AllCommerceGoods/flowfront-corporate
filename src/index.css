@@ -146,3 +146,10 @@
     transform: none !important;
   }
 }
+
+/* intl-tel-input: let the phone field span the full width of its column so the
+   number input runs long, matching the other inputs. */
+.iti {
+  width: 100%;
+  display: block;
+}

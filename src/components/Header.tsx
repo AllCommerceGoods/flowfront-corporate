@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useAuditModal } from "@/components/AuditModal";
 import logoLight from "@/assets/flowfront-logo-light.png";
 import logoDark from "@/assets/flowfront-logo-dark.png";
 
@@ -13,6 +14,7 @@ const navLinks = [
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const { open } = useAuditModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -59,14 +61,13 @@ export function Header() {
           ))}
         </nav>
 
-        <a href="#audit">
-          <Button
-            size="sm"
-            className="cursor-pointer rounded-full font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-          >
-            Get your free channel audit
-          </Button>
-        </a>
+        <Button
+          size="sm"
+          onClick={open}
+          className="cursor-pointer rounded-full font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+        >
+          Get your free channel audit
+        </Button>
       </div>
     </header>
   );
